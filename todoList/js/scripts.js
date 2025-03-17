@@ -1,39 +1,74 @@
-// Clase
+// Classe
 
 class ToDo {
+  Texto
+  Prioridade
+  Feito = false
 
+  constructor (texto, prioridade) {
+    this.Texto = texto
+    this.prioridade = prioridade
+  }
 }
 
 // Array
 
+const array = []
 
-//funções projeto
+// Funções projeto
 
-function CriarToDo() {
-
+function CriarToDo(texto, prioridade, array) {
+  let objetoTodo = new ToDo(texto, prioridade)
+  if (!array.some(todo => todo.Texto == texto)) {
+    array.push(objetoTodo)
+  }
+  return objetoTodo  
 }
 
-function AtualizarToDo() {
-
+function AtualizarToDo(textoAntigo, textoNovo, array) {
+  let atualizado = false
+  const todo = array.find((todo) => todo.Texto == textoAntigo)
+  if (todo) {
+    todo.Texto = textoNovo
+    atualizado = true
+  } 
+  return atualizado
 }
 
-function ConcluirToDo() {
-
+function ConcluirToDo(array, texto) {
+  let concluido = false
+  const todo = array.find(todo => todo.Texto == texto)
+  if (todo) {
+    if (todo.Feito) {
+      todo.Feito = false
+    } else {
+      todo.Feito = true
+    }
+    concluido = true
+  }
+  return concluido
 }
 
-function ExcluirToDo() {
-
+function ExcluirToDo(array, texto) {
+  let excluido = false
+  const todo = array.findIndex(todo => todo.Texto == texto)
+  if (todo >= 0) {
+    array.splice(todo, 1)
+    excluido = true
+  }
+  return excluido
 }
 
-function PesquisarToDo() {
- 
+function PesquisarToDo(array, texto) {
+  return array.some(todo => todo.Texto == texto)
 }
 
-function OrdenarCrescente() {
-  
+function OrdenarCrescente(array) {
+  array.sort((a, b) => a.Prioridade - b.Prioridade)
 }
+
 function OrdenarDecrescente() {
-  
+  array.sort((a, b) => b.Prioridade - a.Prioridade)
 }
 
 // Seleção de elementos
