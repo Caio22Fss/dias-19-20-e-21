@@ -7,13 +7,14 @@ class ToDo {
 
   constructor (texto, prioridade) {
     this.Texto = texto
-    this.prioridade = prioridade
+    this.Prioridade = prioridade
   }
 }
 
 // Array
 
-const array = []
+let arrayTodos = []
+let array = []
 
 // Funções projeto
 
@@ -65,10 +66,12 @@ function PesquisarToDo(array, texto) {
 
 function OrdenarCrescente(array) {
   array.sort((a, b) => a.Prioridade - b.Prioridade)
+  return array
 }
 
-function OrdenarDecrescente() {
+function OrdenarDecrescente(array) {
   array.sort((a, b) => b.Prioridade - a.Prioridade)
+  return array
 }
 
 // Seleção de elementos
@@ -213,7 +216,7 @@ todoForm.addEventListener("submit", (e) => {
 
   const inputValue = todoInput.value;
   const inputValue2 = todoInput2.value;
-
+  
   if (inputValue && inputValue2) {
     saveTodo(inputValue, inputValue2);
   }
